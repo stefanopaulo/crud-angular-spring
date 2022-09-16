@@ -21,6 +21,10 @@ export class CoursesService {
     );
   }
 
+  findById(id: string) {
+    return this.http.get<Course>(`${this.API}/${id}`);
+  }
+
   save(record: Partial<Course>) {
     return this.http.post<Course>(this.API, record)
     .pipe(first());
