@@ -38,10 +38,12 @@ public class CourseService {
 	}
 	
 	public boolean delete(Long id) {
-		return courseRepository.findById(id).map(recordFound -> {
-			 courseRepository.deleteById(id);
-			 return true;
-		}).orElse(false);
+		return courseRepository.findById(id)
+				.map(recordFound -> {
+					courseRepository.deleteById(id);
+					return true;
+				})
+				.orElse(false);
 	}
 
 }
