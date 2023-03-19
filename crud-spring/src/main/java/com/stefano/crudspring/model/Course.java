@@ -1,6 +1,7 @@
 package com.stefano.crudspring.model;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,8 @@ import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.stefano.crudspring.enums.CategoryEnum;
+import com.stefano.crudspring.enums.converters.CategoryConverter;
 
 import lombok.Data;
 
@@ -35,10 +38,9 @@ public class Course {
     private String name;
 
     @NotNull
-    @Length(max = 10)
-    @Pattern(regexp = "Front-end|Back-end")
     @Column(length = 10, nullable = false)
-    private String category;
+    @Convert(converter = CategoryConverter.class)
+    private CategoryEnum category;
     
     @NotNull
     @Length(max = 10)

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Component;
 
+import com.stefano.crudspring.enums.CategoryEnum;
 import com.stefano.crudspring.model.Course;
 
 @Component
@@ -14,7 +15,7 @@ public class CourseMapper {
 			return null;
 		}
 		
-		return new CourseDTO(course.getId(), course.getName(), course.getCategory());
+		return new CourseDTO(course.getId(), course.getName(), "Front-end");
 	}
 	
 	public Course toEntity(CourseDTO courseDTO) {
@@ -29,7 +30,7 @@ public class CourseMapper {
 		}
 		
 		course.setName(courseDTO.getName());
-		course.setCategory(courseDTO.getCategory());
+		course.setCategory(CategoryEnum.FRONTEND);
 		course.setStatus("Ativo");
 
 		return course; 

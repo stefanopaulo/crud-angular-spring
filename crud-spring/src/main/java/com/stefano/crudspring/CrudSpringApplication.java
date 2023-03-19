@@ -1,5 +1,6 @@
 package com.stefano.crudspring;
 
+import com.stefano.crudspring.enums.CategoryEnum;
 import com.stefano.crudspring.model.Course;
 import com.stefano.crudspring.repository.CourseRepository;
 
@@ -22,7 +23,7 @@ public class CrudSpringApplication {
 
 			Course c = new Course();
 			c.setName("Angular + Spring");
-			c.setCategory("Front-end");
+			c.setCategory(CategoryEnum.FRONTEND);
 
 			courseRepository.save(c);
 		};
