@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.stefano.crudspring.enums.CategoryEnum;
 import com.stefano.crudspring.exception.RecordNotFoundException;
 import com.stefano.crudspring.model.dto.CourseDTO;
 import com.stefano.crudspring.model.dto.CourseMapper;
@@ -41,7 +40,7 @@ public class CourseService {
 		return courseRepository.findById(id)
 				.map(recordFound -> {
 					recordFound.setName(courseDTO.getName());
-					recordFound.setCategory(CategoryEnum.FRONTEND);
+					recordFound.setCategory(courseMapper.convertCategoryValue(courseDTO.getCategory()));
 					return courseMapper.toDTO(courseRepository.save(recordFound));
 				})
 				.orElseThrow(() -> new RecordNotFoundException(id));
