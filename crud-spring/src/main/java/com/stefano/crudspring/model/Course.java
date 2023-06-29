@@ -1,11 +1,17 @@
 package com.stefano.crudspring.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -47,4 +53,7 @@ public class Course {
     @Column(length = 10, nullable = false)
     @Convert(converter = StatusConverter.class)
     private StatusEnum status = StatusEnum.ATIVO;
+    
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
+	private List<Lesson> lessons = new ArrayList<>();
 }

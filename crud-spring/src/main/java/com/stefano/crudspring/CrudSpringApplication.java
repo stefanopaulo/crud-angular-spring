@@ -2,6 +2,7 @@ package com.stefano.crudspring;
 
 import com.stefano.crudspring.enums.CategoryEnum;
 import com.stefano.crudspring.model.Course;
+import com.stefano.crudspring.model.Lesson;
 import com.stefano.crudspring.repository.CourseRepository;
 
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +25,13 @@ public class CrudSpringApplication {
 			Course c = new Course();
 			c.setName("Angular + Spring");
 			c.setCategory(CategoryEnum.FRONTEND);
+			
+			Lesson l = new Lesson();
+			l.setName("Aula: OneToMany");
+			l.setYoutubeUrl("Nb4uxLxdvxo");
+			l.setCourse(c);
+			
+			c.getLessons().add(l);
 
 			courseRepository.save(c);
 		};
