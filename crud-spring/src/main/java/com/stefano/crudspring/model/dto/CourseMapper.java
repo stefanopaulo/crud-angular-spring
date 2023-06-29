@@ -1,6 +1,8 @@
 package com.stefano.crudspring.model.dto;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.Objects;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,12 @@ public class CourseMapper {
 			return null;
 		}
 		
-		return new CourseDTO(course.getId(), course.getName(), course.getCategory().getValue(), course.getLessons());
+		List<LessonDTO> lessons = course.getLessons()
+				.stream()
+				.map(lesson -> new LessonDTO(lesson.getId(), lesson.getName(), lesson.getYoutubeUrl()))
+				.collect(Collectors.toList());
+		
+		return new CourseDTO(course.getId(), course.getName(), course.getCategory().getValue(), lessons);
 	}
 	
 	public Course toEntity(CourseDTO courseDTO) {

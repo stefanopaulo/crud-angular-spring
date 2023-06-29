@@ -12,7 +12,6 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.stefano.crudspring.model.Lesson;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +34,6 @@ public class CourseDTO {
     private String category;
     
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
-    private List<Lesson> lessons = new ArrayList<>();
+    private List<LessonDTO> lessons = new ArrayList<>();
 
 }
