@@ -1,5 +1,10 @@
 package com.stefano.crudspring.model.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -7,6 +12,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.stefano.crudspring.model.Lesson;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +33,8 @@ public class CourseDTO {
     @Length(max = 10)
     @Pattern(regexp = "Front-end|Back-end")
     private String category;
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
+    private List<Lesson> lessons = new ArrayList<>();
 
 }
